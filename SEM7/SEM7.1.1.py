@@ -8,7 +8,16 @@ class Vector():
             return Vector(self.x+other.x,self.y+other.y,self.z+other.z)
         if isinstance(other,int) or isinstance(other,float):
             return Vector(self.x+other,self.y+other,self.z+other)
-
+    def __sub__(self, other):
+        if isinstance(other,Vector):
+            return Vector(self.x-other.x,self.y-other.y,self.z-other.z)
+        if isinstance(other,int) or isinstance(other,float):
+            return Vector(self.x-other,self.y-other,self.z-other)
+    def __mul__(self, other):
+        if isinstance(other,Vector):
+            return Vector(self.x*other.x,self.y*other.y,self.z*other.z)
+        if isinstance(other,int) or isinstance(other,float):
+            return Vector(self.x*other,self.y*other,self.z*other)
 n = int(input())
 vvod = []
 vectora = []
