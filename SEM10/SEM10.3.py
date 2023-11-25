@@ -2,7 +2,6 @@ class DLinkedList:
     head = None
     tail = None
     lenght = 0
-
     class Node:
         element = None
         next_node = None
@@ -23,25 +22,19 @@ class DLinkedList:
         while node.next_node:
             node = node.next_node
 
-        node.next_node = self.Node(element, previous_node=node)
-        self.tail = self.Node(element, previous_node=node)
+        node.next_node = self.Node(element, previous_node = node)
+        self.tail = self.Node(element, previous_node = node)
 
     def inset(self, element, index):
         self.lenght += 1
         i = 0
         node = self.head
         prev_node = self.head
-
         while i < index:
             prev_node = node
             node = node.next_node
-
-
             i += 1
-        prev_node.next_node = self.Node(element, next_node=node, previous_node=prev_node)
-        node.previous_node = node.previous_node = self.Node(element, next_node=node, previous_node=prev_node)
-
-
+        prev_node.next_node = self.Node(element, next_node = node, previous_node = prev_node)
         return element
 
     def delete(self, index):
@@ -60,6 +53,7 @@ class DLinkedList:
             self.tail.next_node = None
             del node
             return element
+
 
         node = self.head
         prev_node = node
