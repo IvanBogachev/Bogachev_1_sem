@@ -22,7 +22,7 @@ class Caesar:
         return ''.join([self._encode.get(char, char) for char in line])
 
 
-key = int(input('Введите ключ:'))
+key = 19
 cipher = Caesar(key)
 line = input()
 while line != '.':
