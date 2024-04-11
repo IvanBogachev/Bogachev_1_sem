@@ -19,44 +19,25 @@ def read_graph_as_neigh_list_w():
             graph_dict[edge[0]] = graph_dict[edge[0]] | frozenset([(edge[1],edge[2])])
     return graph_dict
 
-def Dijkstra(graph, v):
+def Bellman_Ford(graph, s):
     d = {}
-    queue = []
-    visited = []
     for key in graph.keys():
         d[key] = 1000
-
-    d[v] = 0
-    queue.append([0, v])
-
-    while queue:
-        queue.sort()
-        print("queue1 =", queue)
-
-        c = queue.pop(0)
-        print("queue2 =", queue)
-        visited.append(c[1])
-        print('visited =', visited)
-        for neigh in graph[c[1]]:
-            if neigh[0] not in visited:
-                print("neigh =", neigh)
-                print("c =", c)
-                if (d[c[1]] + neigh[1]) < d[neigh[0]]:
-                    print('d[c[1]] = ', d[c[1]], 'neigh[1] =', neigh[1], 'd[neigh[0]] =', d[neigh[0]])
-                    d[neigh[0]] = (d[c[1]] + neigh[1])
-                    print("d2 = ", d)
-                queue.append(neigh[::-1])
-                print('neigh[::-1]', neigh[::-1])
-
-
-                print("   "
-                      "   ")
+    d[s] = 0
+    n = len(d)
+    for j in range(n - 1):
+        for i in graph:
+            for neigh in graph[i]:
+                u = i
+                v = neigh[0]
+                w = neigh[1]
+                if d[v] > (d[u] + w):
+                    d[v] = (d[u] + w)
     return d
-graph = read_graph_as_edges_w()
-#DFS_w(graph, 1)
-# print(has_cycle(graph, 1))
-# print(topologicalSort(graph))
-print(graph)
+
+graph = read_graph_as_neigh_list_w()
+
+print(Bellman_Ford(graph, 1))
 '''9
 1 2 5
 1 3 1
@@ -67,3 +48,5 @@ print(graph)
 3 7 2
 5 6 1
 7 6 4'''
+
+
