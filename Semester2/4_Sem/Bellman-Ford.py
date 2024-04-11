@@ -52,8 +52,18 @@ def Dijkstra(graph, v):
                 print("   "
                       "   ")
     return d
-graph = read_graph_as_neigh_list_w()
+graph = read_graph_as_edges_w()
 #DFS_w(graph, 1)
 # print(has_cycle(graph, 1))
 # print(topologicalSort(graph))
-print(Dijkstra(graph, 1))
+print(graph)
+'''9
+1 2 5
+1 3 1
+2 5 1
+3 5 6
+3 4 3
+4 7 5
+3 7 2
+5 6 1
+7 6 4'''

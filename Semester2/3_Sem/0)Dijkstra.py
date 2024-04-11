@@ -31,26 +31,15 @@ def Dijkstra(graph, v):
 
     while queue:
         queue.sort()
-        print("queue1 =", queue)
 
         c = queue.pop(0)
-        print("queue2 =", queue)
         visited.append(c[1])
-        print('visited =', visited)
         for neigh in graph[c[1]]:
             if neigh[0] not in visited:
-                print("neigh =", neigh)
-                print("c =", c)
                 if (d[c[1]] + neigh[1]) < d[neigh[0]]:
-                    print('d[c[1]] = ', d[c[1]], 'neigh[1] =', neigh[1], 'd[neigh[0]] =', d[neigh[0]])
                     d[neigh[0]] = (d[c[1]] + neigh[1])
-                    print("d2 = ", d)
                 queue.append(neigh[::-1])
-                print('neigh[::-1]', neigh[::-1])
 
-
-                print("   "
-                      "   ")
     return d
 graph = read_graph_as_neigh_list_w()
 #DFS_w(graph, 1)
