@@ -45,8 +45,9 @@ def Bellman_Ford(graph, s):
     return d
 
 graph = read_graph_as_neigh_list_w()
+print(graph)
 #"Граф содержит отрицательные циклы"
-print(Bellman_Ford(graph, 1))
+#print(Bellman_Ford(graph, 1))
 '''9
 1 2 5
 1 3 1
@@ -57,5 +58,8 @@ print(Bellman_Ford(graph, 1))
 3 7 2
 5 6 1
 7 6 4'''
-
+'''3
+9 3 5
+4 2 1
+24 5 2'''
 
