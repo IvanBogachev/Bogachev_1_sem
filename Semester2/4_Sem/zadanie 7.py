@@ -1,13 +1,23 @@
-def read_graph_as_edges_w():
+def read_graph_as_edges_1():
     n = int(input())
-    graph = [list(map(int, input().split())) for i in range(n)]
+    graph = [list(map(str, input().split())) for i in range(n)]
     # for i in range(n):
     #     graph.append(list(map(int, input().split())))
     return graph
 
 
+def read_graph_as_edges_2():
+    gp = read_graph_as_edges_1()
+    graph = []
+    for i in range(len(gp)):
+        if gp[i][0] == "<":
+            graph.append([int(gp[i][1]),int(gp[i][2]),int(gp[i][3])])
+        else:
+            graph.append([int(gp[i][2]), int(gp[i][1]), (-1)*int(gp[i][3])])
+    return graph
+
 def read_graph_as_neigh_list_w():
-    edge_list = read_graph_as_edges_w()
+    edge_list = read_graph_as_edges_2()
     graph_dict = {}  # dict()
     vertex_set = set()
     for edge in edge_list:
@@ -19,7 +29,7 @@ def read_graph_as_neigh_list_w():
             graph_dict[edge[0]] = graph_dict[edge[0]] | frozenset([(edge[1],edge[2])])
     return graph_dict
 
-def Bellman_Ford(graph, s):
+def Bellman_Ford_yes_or_not_negative_cycle(graph, s):
     d = {}
     for key in graph.keys():
         d[key] = 1000
@@ -40,26 +50,25 @@ def Bellman_Ford(graph, s):
             v = neigh[0]
             w = neigh[1]
             if d[v] > (d[u] + w):
-                return "Граф содержит отрицательные циклы"
+                return False
 
-    return d
+    return True
 
 graph = read_graph_as_neigh_list_w()
-print(graph)
-#"Граф содержит отрицательные циклы"
-#print(Bellman_Ford(graph, 1))
-'''9
-1 2 5
-1 3 1
-2 5 1
-3 5 6
-3 4 3
-4 7 5
-3 7 2
-5 6 1
-7 6 4'''
+k1 = list(graph.keys())[0]
+
+
+print(Bellman_Ford_yes_or_not_negative_cycle(graph, k1))
 '''3
-9 3 5
-4 2 1
-24 5 2'''
+> 4 2 -3
+< 32 4 6
+> 24 2 4'''
+'''3
+< 1 2 1
+< 2 3 1
+< 3 1 -3
+
+пример с семенара'''
+# Ввод след образом: 1- ая строка - колличество условий
+# Все послед строки: 1-ый знак < или > (подразумевается не строгий), 2-ое число l,потом r и k
 
