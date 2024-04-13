@@ -1,6 +1,6 @@
 def read_graph_as_edges():
     n = int(input())
-    graph = [list(map(str, input().split())) for i in range(n)]
+    graph = [list(map(int, input().split())) for i in range(n)]
     # for i in range(n):
     #     graph.append(list(map(int, input().split())))
     return  graph
@@ -34,13 +34,14 @@ def have_cycle(adj_list, u, colors):
     return ans
 
 
-graph = read_graph_as_edges()
+graph = read_graph_as_neigh_list()
 colors = []
 for i in range(len(graph) + 1):
     colors.append("white")
-print(graph)
+
+print(have_cycle(graph,1,colors))
 
 '''3
 1 2
 2 3
-1 3'''
+3 1'''
