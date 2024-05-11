@@ -17,34 +17,36 @@ def read_graph_as_neigh_list_w():
         graph_dict[v] = frozenset()
     for edge in edge_list:
             graph_dict[edge[0]] = graph_dict[edge[0]] | frozenset([(edge[1],edge[2])])
+
     return graph_dict
 
 def Dijkstra(graph, v):
-    d = {}
     queue = []
-    visited = []
+    d = {}
     for key in graph.keys():
-        d[key] = 1000
-
+        d[key] = 10000
     d[v] = 0
-    queue.append([0, v])
-
+    queue.append((0, v))
     while queue:
         queue.sort()
-
         c = queue.pop(0)
-        visited.append(c[1])
+        cur_dist, cur_node = c
+
+        if cur_dist > d[cur_node]:
+            continue
+
         for neigh in graph[c[1]]:
-            if neigh[0] not in visited:
-                if (d[c[1]] + neigh[1]) < d[neigh[0]]:
-                    d[neigh[0]] = (d[c[1]] + neigh[1])
-                queue.append(neigh[::-1])
+            if (d[c[1]] + neigh[1]) < d[neigh[0]]:
+                d[neigh[0]] = (d[c[1]] + neigh[1])
+                visited = neigh[::-1]
+                queue.append(tuple(visited))
 
     return d
 graph = read_graph_as_neigh_list_w()
 #DFS_w(graph, 1)
 # print(has_cycle(graph, 1))
 # print(topologicalSort(graph))
+print(graph)
 print(Dijkstra(graph, 1))
 '''9
 1 2 5
